@@ -1,7 +1,7 @@
 # LLM Llama.cpp on NVIDIA Jetson™
 
-**Version:** 2.0
-**Release Date:** August 2025
+**Version:** 1.0
+**Release Date:** May 2025
 **Copyright:** © 2025 Advantech Corporation. All rights reserved.
 
 ## Overview
@@ -22,7 +22,7 @@ LLM Llama.cpp on NVIDIA Jetson™ offers a streamlined, hardware-accelerated pla
 
 
 ## Architecture
-![llama-cpp-llama.png](..%2Fdata%2Farchitectures%2Fllama-cpp-llama.png)
+![llama-cpp-llama.png](data%2Farchitectures%2Fllama-cpp-llama.png)
 
 ## Repository Structure
 ```
@@ -40,6 +40,7 @@ LLM-Llama.cpp-on-NVIDIA-Jetson/
 ├── .gitignore                                  # Git ignore specific files
 ├── convert_and_quantize.py                     # Script to convert Hugging face models to gguf 
 ├── download_model.sh                           # Hugging Face model downloader
+├── data                                        # Contains subfolders for assets like images, gifs etc.
 └── llama-cpp-service/                          # Folder containing LlamaCPP files
     ├── models                                  # Contains model files
     └── start_services.sh                       # Startup script
@@ -202,7 +203,7 @@ Allow some time for the OpenWebUI and Jetson™ LLM LlamaCpp container to settle
 /workspace/wise-bench.sh
 ```
 
-![llama-cpp-wise-bench.png](..%2Fdata%2Fimages%2Fllama-cpp-wise-bench.png)
+![llama-cpp-wise-bench.png](data%2Fimages%2Fllama-cpp-wise-bench.png)
 
 Wise-bench logs are saved in `wise-bench.log` file under `/workspace`
 
@@ -221,7 +222,7 @@ http://localhost_or_Jetson_IP:3000
 
 ### Quick Demonstration:
 
-![Demo](..%2Fdata%2Fgifs%2Fllamacpp-metallama.gif)
+![Demo](data%2Fgifs%2Fllamacpp-metallama.gif)
 
 ## Prompt Guidelines
 
@@ -345,7 +346,7 @@ The inference stream should get started after running this.
 ### LlamaCpp Python APIs Swagger
 LlamaCpp APIs are accessible on the default endpoint (unless modified). 
 
-![llama-cpp-python-curl.png](..%2Fdata%2Fimages%2Fllamacpp-python-curl.png)
+![llama-cpp-python-curl.png](data%2Fimages%2Fllamacpp-python-curl.png)
 
 For further details, please refer to the official documentation of LlamaCpp Python as mentioned on top.
 

@@ -50,4 +50,4 @@ N_BATCH=512
   ```
   It should display Swagger documentation. 
 
-![ollama-status](..%2Fdata%2Fimages%2Fllamacpp-python-curl.png)
+![ollama-status](data%2Fimages%2Fllamacpp-python-curl.png)

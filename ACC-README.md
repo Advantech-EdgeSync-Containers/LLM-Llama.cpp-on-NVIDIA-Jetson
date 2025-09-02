@@ -30,7 +30,7 @@ The LLM Llama.cpp on NVIDIA Jetson™ delivers a plug-and-play AI runtime for NV
 
 
 ## Container Demo
-![Demo](..%2Fdata%2Fgifs%2Fllamacpp-metallama.gif)
+![Demo](data%2Fgifs%2Fllamacpp-metallama.gif)
 
 ## Use Cases
 
