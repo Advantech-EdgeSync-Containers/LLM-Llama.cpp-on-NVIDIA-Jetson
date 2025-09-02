@@ -162,7 +162,7 @@ Please take a note of the following points:
 
 ```
 # Clone the repository
-git clone https://github.com/Advantech-EdgeSync-Containers/Nagarro-Container-Project.git
+git clone https://github.com/Advantech-EdgeSync-Containers/LLM-Llama.cpp-on-NVIDIA-Jetson.git
 cd LLM-Llama.cpp-on-NVIDIA-Jetson
 
 # Update HF_TOKEN in .env file
