@@ -1,12 +1,43 @@
-version: "2.4"
-# Advantech Jetson™ LLM LlamaCPP AI development Docker Compose file 
-# Created and maintained by Samir Singh <samir.singh@advantech.com>
-# This Docker Compose file configures the Jetson™ LLM LlamaCPP AI Development Container
-# with all necessary hardware acceleration settings.
+# ==========================================================================
+# Jetson™ LLM-Llama.cpp AI Development Docker Compose File
+# ==========================================================================
+# Version:      1.5.0
+# Author:       Samir Singh <samir.singh@advantech.com>  and Apoorv Saxena<apoorv.saxena@advantech.com>
+# Last Updated: October 03, 2025
+# 
+# Description:
+#   NVIDIA Jetson with LlamaCPP inference engine and OpenWebUI frontend.
+#
+# Key Features:
+#   • LlamaCPP Inference Service:
+#       – GPU-accelerated inference with OpenAI-compatible API
+#       – Full NVIDIA hardware acceleration (CUDA, TensorRT, NVENC/NVDEC)
+#       – Integrated WiseBench diagnostics tool
+#   • OpenWebUI Frontend Service:
+#       – Web-based chat interface
+#       – Connects to LlamaCPP via OpenAI-compatible API
+#
+# Services:
+#   - llama-cpp-service
+#   - openweb-ui-service
+#
+#
+# Terms and Conditions:
+#   1. Provided by Advantech Corporation "as is," without any express or
+#      implied warranties of merchantability or fitness for a particular
+#      purpose.
+#   2. In no event shall Advantech Corporation be liable for any direct,
+#      indirect, incidental, special, exemplary, or consequential damages
+#      arising from the use of this software.
+#   3. Redistribution and use in source and binary forms, with or without
+#      modification, are permitted provided this notice appears in all
+#      copies.
+#
 # Copyright (c) 2025 Advantech Corporation. All rights reserved.
+# ==========================================================================
 services:
   llama-cpp-service:
-      image: harbor.edgesync.cloud/nagarro-container-images/llm-llama.cpp-on-nvidia-jetson:v1
+      image: edgesync.azurecr.io/advantech/llm-llama-cpp-on-nvidia-jetson:1.5.0-Ubuntu20.04-ARM
       container_name: LLM-Llama.cpp-on-NVIDIA-Jetson
       env_file: .env
       privileged: true
