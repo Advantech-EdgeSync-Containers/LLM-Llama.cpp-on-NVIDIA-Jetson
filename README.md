@@ -200,8 +200,12 @@ Allow some time for the OpenWebUI and Jetson™ LLM LlamaCpp container to settle
 ### AI Accelerator and Software Stack Verification (Optional)
 ```
 # Verify AI Accelerator and Software Stack Inside Docker Container
-chmod +x /workspace/wise-bench.sh
-./workspace/wise-bench.sh
+# Under /workspace, run this command
+# Provide executable rights
+chmod +x wise-bench.sh
+
+# To run wise-bench.sh 
+./wise-bench.sh
 ```
 
 ![llama-cpp-wise-bench.png](data%2Fimages%2Fllama-cpp-wise-bench.png)
