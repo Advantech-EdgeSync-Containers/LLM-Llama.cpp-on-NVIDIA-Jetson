@@ -7,6 +7,16 @@
 
 ## Overview
 LLM Llama.cpp on NVIDIA Jetson™ offers a streamlined, hardware-accelerated platform for building and deploying conversational AI on NVIDIA Jetson™ devices. It features LlamaCpp-Python (a Python interface for LlamaCPP) and the Meta Llama 3.2 1B Instruct model, enabling efficient on-device inference. The container also integrates OpenWebUI for an intuitive chat interface and includes optimized AI software components. Designed for edge environments, it delivers high performance, low latency, and reliable real-time AI experiences.
+## Host System Requirements
+
+| Component | Version/Requirement |
+|-----------|---------|
+| **JetPack** | 5.x |
+| **CUDA** | 11.4.315 |
+| **cuDNN** | 8.6.0.166 |
+| **TensorRT** | 8.5.2.2 |
+| **OpenCV** | 4.5.4 |
+
 
 ## Key Features
 
@@ -157,7 +167,13 @@ Please take a note of the following points:
 - The container provides flexibility to users, as they can download the pre-converted & pre-quantized Meta Llama 3.2 Instruct 1B model from Hugging Face using `download_model.sh`, or they can also follow [the Quantization README](./quantization-readme.md) to convert & quantize Hugging Face models by themselves.
 
 - In case users convert & quantize their own models, please ensure that the models are placed under the `/models` directory and `MODEL_NAME` is also updated in the `.env` file before starting the services.
+- Ensure the following components are installed on your host system:
 
+- Ensure the following components are installed on your host system:
+  - **Docker** (v28.1.1 or compatible)
+  - **Docker Compose** (v2.39.1 or compatible)
+  - **NVIDIA Container Toolkit** (v1.11.0 or compatible)
+  - **NVIDIA Runtime** configured in Docker
 ### Important: Hugging Face Token Configuration
 Before running the download script, you **must** configure your Hugging Face access token:
 
