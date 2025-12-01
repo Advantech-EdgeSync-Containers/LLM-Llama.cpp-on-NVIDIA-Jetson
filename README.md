@@ -3,6 +3,7 @@
 **Version:** 1.0
 **Release Date:** May 2025
 **Copyright:** © 2025 Advantech Corporation. All rights reserved.
+>  Check our [Troubleshooting Wiki](https://github.com/Advantech-EdgeSync-Containers/GPU-Passthrough-on-NVIDIA-Jetson/wiki/Advantech-Containers'-Troubleshooting-Guide) for common issues and solutions.
 
 ## Overview
 LLM Llama.cpp on NVIDIA Jetson™ offers a streamlined, hardware-accelerated platform for building and deploying conversational AI on NVIDIA Jetson™ devices. It features LlamaCpp-Python (a Python interface for LlamaCPP) and the Meta Llama 3.2 1B Instruct model, enabling efficient on-device inference. The container also integrates OpenWebUI for an intuitive chat interface and includes optimized AI software components. Designed for edge environments, it delivers high performance, low latency, and reliable real-time AI experiences.
@@ -339,7 +340,6 @@ def generate_response(prompt):
 
 if name == "__main__":
     generate_response("Explain quantum computing in simple terms.")
-```
 ```
 Save it as script.py and run it using the following command:
 ```
