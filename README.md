@@ -209,6 +209,13 @@ nano .env
 # For more details on creating a Hugging Face token, see:
 # https://huggingface.co/docs/hub/security-tokens
 
+# IMPORTANT
+# 1. Update MODEL_NAME to match your desired model's filename (e.g., DeepSeek-R1-1.5B.gguf)
+# 2. Update HF_REPO to point to the correct Hugging Face repository
+# 3. Update HF_MODEL_FILE to match the exact filename in the repository
+# 4. Ensure all three values are consistent with each other
+
+
 # Make the download model script executable
 chmod +x download_model.sh
 
