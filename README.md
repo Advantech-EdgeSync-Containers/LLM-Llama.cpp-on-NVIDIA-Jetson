@@ -149,12 +149,24 @@ The following software components/packages are provided further as a part of thi
 | Meta Llama 3.2 1B Instruct | N/A     | Pulled/Stored inside LlamaCpp container and persisted  |
 
 
+
 ## Before You Start
 Please take a note of the following points:
 
 - The container provides flexibility to users, as they can download the pre-converted & pre-quantized Meta Llama 3.2 Instruct 1B model from Hugging Face using `download_model.sh`, or they can also follow [the Quantization README](./quantization-readme.md) to convert & quantize Hugging Face models by themselves.
 
 - In case users convert & quantize their own models, please ensure that the models are placed under the `/models` directory and `MODEL_NAME` is also updated in the `.env` file before starting the services.
+
+### Important: Hugging Face Token Configuration
+Before running the download script, you **must** configure your Hugging Face access token:
+
+1. Create a Hugging Face account at https://huggingface.co if you don't have one
+2. Generate an access token:
+   - Go to https://huggingface.co/settings/tokens
+   - Click "New token"
+   - Select "Read" permission 
+   - Copy your token
+3. The token format should be a string like: `hf_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx`
 
 ## Quick Start
 
@@ -166,9 +178,18 @@ git clone https://github.com/Advantech-EdgeSync-Containers/LLM-Llama.cpp-on-NVID
 cd LLM-Llama.cpp-on-NVIDIA-Jetson
 
 # Update HF_TOKEN in .env file
-# Create a hugging face token with read permissions
-# Follow 'Authentication token' section under quantization-readme.md
-HF_TOKEN=<ADD-YOUR-HF-TOKEN>
+# Open the .env file with your preferred text editor (vim, nano, etc.)
+nano .env
+# Or use vim:
+# vim .env
+# Find the line that says:
+# HF_TOKEN=<your-token>
+# Replace <your-token> with your actual Hugging Face token (without angle brackets)
+# Example: HF_TOKEN=hf_xxxxxxxxxxxxxxxxxxxx
+# Do NOT use quotes around the token
+# Save and exit (in nano: Ctrl+O, Enter, Ctrl+X; in vim: :wq)
+# For more details on creating a Hugging Face token, see:
+# https://huggingface.co/docs/hub/security-tokens
 
 # Make the download model script executable
 chmod +x download_model.sh
