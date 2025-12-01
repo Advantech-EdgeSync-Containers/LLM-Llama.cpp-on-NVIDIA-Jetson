@@ -169,8 +169,6 @@ Please take a note of the following points:
 
 - In case users convert & quantize their own models, please ensure that the models are placed under the `/models` directory and `MODEL_NAME` is also updated in the `.env` file before starting the services.
 - Ensure the following components are installed on your host system:
-
-- Ensure the following components are installed on your host system:
   - **Docker** (v28.1.1 or compatible)
   - **Docker Compose** (v2.39.1 or compatible)
   - **NVIDIA Container Toolkit** (v1.11.0 or compatible)
