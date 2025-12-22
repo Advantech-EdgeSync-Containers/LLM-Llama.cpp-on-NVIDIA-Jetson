@@ -3,9 +3,23 @@
 **Version:** 1.0
 **Release Date:** November 2025
 **Copyright:** © 2025 Advantech Corporation. All rights reserved.
+>  Check our [Troubleshooting Wiki](https://github.com/Advantech-EdgeSync-Containers/GPU-Passthrough-on-NVIDIA-Jetson/wiki/Advantech-Containers'-Troubleshooting-Guide) for common issues and solutions.
 
 ## Overview
 LLM Llama.cpp on NVIDIA Jetson™ offers a streamlined, hardware-accelerated platform for building and deploying conversational AI on NVIDIA Jetson™ devices. It features LlamaCpp-Python (a Python interface for LlamaCPP) and the Meta Llama 3.2 1B Instruct model, enabling efficient on-device inference. The container also integrates OpenWebUI for an intuitive chat interface and includes optimized AI software components. Designed for edge environments, it delivers high performance, low latency, and reliable real-time AI experiences.
+
+## Host System Requirements
+
+| Component | Version/Requirement |
+|-----------|---------|
+| **JetPack** | 6.x |
+| **CUDA** | 12.6.68 |
+| **cuDNN** | 9.3.0.75 |
+| **TensorRT** | 10.3.0.30 |
+| **OpenCV** | 4.8.0 |
+
+* CUDA , CuDNN , TensorRT , OpenCV versions Depends on JetPack version 6.x
+* Please refer to the [NVIDIA JetPack Documentation](https://developer.nvidia.com/embedded/jetpack) for more details on compatible versions.
 
 ## Key Features
 
@@ -127,14 +141,18 @@ This image uses Meta Llama 3.2 1B. For inferencing, here are the details about t
 
 The following software components are available in the base image:
 
-| Component | Version   | Description                        |
-|-----------|-----------|------------------------------------|
-| CUDA®     | 12.6.68   | GPU computing platform             |
-| cuDNN     | 9.3.0.75  | Deep Neural Network library        |
-| TensorRT™ | 10.3.0.30 | Inference optimizer and runtime    |
-| VPI       | 3.2.4     | Vision Programming Interface       |
-| Vulkan    | 1.3.204   | Graphics and compute API           |
-| OpenCV    | 4.8.0     | Computer vision library with CUDA® |
+| Component    | Version        | Description                        |
+|--------------|----------------|------------------------------------|
+| CUDA®        | 12.6.68        | GPU computing platform             |
+| cuDNN        | 9.3.0.75       | Deep Neural Network library        |
+| TensorRT™    | 10.3.0.30      | Inference optimizer and runtime    |
+| PyTorch      | 2.0.0+nv23.02  | Deep learning framework            |
+| TensorFlow   | 2.12.0         | Machine learning framework         |
+| ONNX Runtime | 1.16.3         | Cross-platform inference engine    |
+| VPI          | 3.2.4          | Vision Programming Interface       |
+| Vulkan       | 1.3.204        | Graphics and compute API           |
+| OpenCV       | 4.8.0          | Computer vision library with CUDA® |
+| GStreamer    | 1.16.2         | Multimedia framework               |
 
 
 The following software components/packages are provided further as a part of this image:
@@ -148,11 +166,27 @@ The following software components/packages are provided further as a part of thi
 
 
 ## Before You Start
-Please take a note of the following points:
 
 - The container provides flexibility to users, as they can download the pre-converted & pre-quantized Meta Llama 3.2 Instruct 1B model from Hugging Face using `download_model.sh`, or they can also follow [the Quantization README](./quantization-readme.md) to convert & quantize Hugging Face models by themselves.
 
+### Important: Hugging Face Token Configuration
+Before running the download script, you **must** configure your Hugging Face access token:
+
+1. Create a Hugging Face account at https://huggingface.co if you don't have one
+2. Generate an access token:
+   - Go to https://huggingface.co/settings/tokens
+   - Click "New token"
+   - Select "Read" permission
+   - Copy your token
+3. The token format should be a string like: `hf_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx`
+
 - In case users convert & quantize their own models, please ensure that the models are placed under the `/models` directory and `MODEL_NAME` is also updated in the `.env` file before starting the services.
+
+- Ensure the following components are installed on your host system:
+  - **Docker** (v28.1.1 or compatible)
+  - **Docker Compose** (v2.39.1 or compatible)
+  - **NVIDIA Container Toolkit** (v1.11.0 or compatible)
+  - **NVIDIA Runtime** configured in Docker
 
 ## Quick Start
 
@@ -164,9 +198,25 @@ git clone https://github.com/Advantech-EdgeSync-Containers/LLM-Llama.cpp-on-NVID
 cd LLM-Llama.cpp-on-NVIDIA-Jetson
 
 # Update HF_TOKEN in .env file
-# Create a hugging face token with read permissions
-# Follow 'Authentication token' section under quantization-readme.md
-HF_TOKEN=<ADD-YOUR-HF-TOKEN>
+# Open the .env file with your preferred text editor (vim, nano, etc.)
+nano .env
+# Or use vim:
+# vim .env
+# Find the line that says:
+# HF_TOKEN=<your-token>
+# Replace <your-token> with your actual Hugging Face token (without angle brackets)
+# Example: HF_TOKEN=hf_xxxxxxxxxxxxxxxxxxxx
+# Do NOT use quotes around the token
+# Save and exit (in nano: Ctrl+O, Enter, Ctrl+X; in vim: :wq)
+# For more details on creating a Hugging Face token, see:
+# https://huggingface.co/docs/hub/security-tokens
+
+# IMPORTANT
+# 1. Update MODEL_NAME to match your desired model's filename (e.g., DeepSeek-R1-1.5B.gguf)
+# 2. Update HF_REPO to point to the correct Hugging Face repository
+# 3. Update HF_MODEL_FILE to match the exact filename in the repository
+# 4. Ensure all three values are consistent with each other
+
 
 # Make the download model script executable
 chmod +x download_model.sh
@@ -198,8 +248,12 @@ Allow some time for the OpenWebUI and Jetson™ LLM LlamaCpp container to settle
 ### AI Accelerator and Software Stack Verification (Optional)
 ```
 # Verify AI Accelerator and Software Stack Inside Docker Container
-chmod +x /workspace/wise-bench.sh
-./workspace/wise-bench.sh
+# Under /workspace, run this command
+# Provide executable rights
+chmod +x wise-bench.sh
+
+# To run wise-bench.sh
+./wise-bench.sh
 ```
 
 ![llama-cpp-wise-bench.png](data%2Fimages%2Fllama-cpp-wise-bench.png)
