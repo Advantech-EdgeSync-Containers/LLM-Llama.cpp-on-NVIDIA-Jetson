@@ -343,7 +343,7 @@ def generate_with_LlamaCpp_stream(prompt):
                     print(f"[Error decoding JSON chunk]: {e}")
 
 # Example usage
-if name == "__main__":
+if __name__ == "__main__":
     prompt = "Explain quantum computing in simple terms."
     generate_with_LlamaCpp_stream(prompt)
 
@@ -360,7 +360,7 @@ def generate_response(prompt):
     for chunk in response:
         print(chunk["choices"][0]["text"], end="", flush=True)
 
-if name == "__main__":
+if __name__ == "__main__":
     generate_response("Explain quantum computing in simple terms.")
 ```
 Save it as script.py and run it using the following command:
