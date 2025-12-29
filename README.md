@@ -297,7 +297,9 @@ Here are quick commands/instructions to troubleshoot issues with the Jetson™ L
   tail -f llamacpp.log
   ```
 - Check if the model is loaded using CPU or GPU or partially both via logs (ideally should be 100% GPU loaded).
-
+  ```
+  ollama ps
+  ```
 - Kill & restart services within the container (check pid manually via `ps -eaf` or use pid stored in `LlamaCpp.pid`)
   ```
   kill $(cat llamacpp.pid)
